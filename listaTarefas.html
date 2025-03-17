@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        *{
+            font-family: 'Poppins', sans-serif;
+            padding: 0;
+        }
+        body{
+            background-color: #E3D9C4;
+        }
+        h1{
+            color: #AF4153;
+
+        }
+        .inserirTarefa{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 15%;
+        }
+        .inserirTarefa input{
+            margin-bottom: 2%;
+        }
+        ul{
+            list-style: none;
+        }
+        .concluida{
+            text-decoration: line-through;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="inserirTarefa">
+        <h1>Lista</h1>
+        <!-- <div class="inputTarefa"> -->
+            <input type="text" name="" id="novaTarefa" placeholder="">
+            <button id="adicionar">add</button>
+        <!-- </div> -->
+        
+    </div>
+    <ul id="listaTarefas"></ul>
+
+    <script>
+        document.getElementById("adicionar").addEventListener("click", function(){
+            let inputTarefa = document.getElementById("novaTarefa");
+            let tarefaTexto = inputTarefa.value.trim();
+ 
+            if(tarefaTexto === "")return;
+ 
+            let lista = document.getElementById("listaTarefas");
+            let item = document.createElement("li");
+            item.textContent = tarefaTexto;
+ 
+            let btnConcluir = document.createElement("button")
+            btnConcluir.textContent = "Concluir";
+            btnConcluir.addEventListener("click", function(){
+                item.classList.toggle("concluida");
+            });
+ 
+            let btnRemover = document.createElement("button");
+            btnRemover.textContent = "Remover";
+            btnRemover.addEventListener("click", function(){
+                lista.removeChild(item);
+            });
+ 
+            item.appendChild(btnConcluir);
+            item.appendChild(btnRemover);
+            lista.appendChild(item);
+ 
+            inputTarefa.value = "";
+            inputTarefa.focus();
+        });
+    </script>
+</body>
+</html>
