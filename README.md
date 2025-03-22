@@ -22,4 +22,4 @@ Um projeto simples de lista de tarefas, desenvolvido em **JavaScript**, onde o u
 ![image](https://github.com/user-attachments/assets/4d38a8b4-784a-4826-ad5f-506d7de939c5)
 <hr>
 
-### Feito com 💙 por Esther
+### Feito com 💜 por Esther
