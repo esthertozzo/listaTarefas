@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -52,11 +53,11 @@
 
         .concluida {
             text-decoration: line-through;
-            color: green;
+            color: #817b84;
         }
 
-        .novaTarefa{
-            width: 20%;
+        .novaTarefa {
+            width: 25%;
             padding: 12px 24px;
             margin: 8px 0;
             box-sizing: border-box;
@@ -65,10 +66,12 @@
             border-radius: 10px;
             box-shadow: 2.5px 5px #817b84;
         }
-        .novaTarefa:focus{
+
+        .novaTarefa:focus {
             outline: 1px solid #9a60b3;
         }
-        button{
+
+        button {
             padding: 10px 24px;
             margin: 4px 0;
             border-radius: 10px;
@@ -76,15 +79,47 @@
             background-color: #656267;
             color: #fff;
             cursor: pointer;
-        }button:hover{
+        }
+
+        button:hover {
             background-color: #835398;
             transition: all 0.1s ease;
         }
-        .listaTarefas li{
+
+        .listaTarefas li {
             display: flex;
             align-items: center;
-            justify-content: center;
             word-break: break-all;
+            background-color: #fbfbfb;
+            margin: 2% 30%;
+            border-radius: 50px;
+            gap: 16px;
+            padding: 8px;
+            list-style: none;
+            padding-left: 32px;
+        }
+        input[type="checkbox"] {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 1px solid #656267;
+            border-radius: 16px;
+        }
+        input[type="checkbox"]:checked{
+            background-color: #835398;
+            border: none;
+        }
+        input[type="checkbox"]:checked::after{
+            content: "✔";
+            color: #fbfbfb;
+            position: relative;
+            left: 6px;
+            top: 2.3px;   
+        }
+        .itemTexto{
+            
+            max-width: 400px; /* Limita a largura máxima */
+            width: 100%;
         }
     </style>
 </head>
@@ -104,28 +139,37 @@
         document.getElementById("adicionar").addEventListener("click", function () {
             let inputTarefa = document.getElementById("novaTarefa");
             let tarefaTexto = inputTarefa.value.trim();
-            
 
-            if (tarefaTexto === "") return;
+
+            if (tarefaTexto === "") {
+                alert("digite alguma tarefa para ser adicionada!");
+                return
+            }
 
             let lista = document.getElementById("listaTarefas");
             let item = document.createElement("li");
-            item.textContent = tarefaTexto;
+
+            let itemTexto = document.createElement("span");
+            itemTexto.classList.add("itemTexto");
+            itemTexto.textContent = tarefaTexto;
+            item.appendChild(itemTexto);
 
             let btnConcluir = document.createElement("input");
             btnConcluir.type = "checkbox";
             btnConcluir.addEventListener("click", function () {
-                item.classList.toggle("concluida");
+                itemTexto.classList.toggle("concluida");
             });
 
             let btnRemover = document.createElement("button");
-            btnRemover.textContent = "Remover";
+            btnRemover.innerHTML = '<i class="fas fa-trash-alt"></i>';
             btnRemover.addEventListener("click", function () {
-                lista.removeChild(item);
+                if (confirm("tem certeza que deseja excluir essa tarefa?")) {
+                    lista.removeChild(item);
+                }
             });
 
             lista.appendChild(item);
-            item.appendChild(btnConcluir);
+            item.prepend(btnConcluir); //dicionar um elemento filho no início de outro elemento
             item.appendChild(btnRemover);
 
             inputTarefa.value = "";
