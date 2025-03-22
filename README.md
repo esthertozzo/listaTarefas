@@ -12,7 +12,7 @@ Um projeto simples de lista de tarefas, desenvolvido em **JavaScript**, onde o u
 ## Como usar
 1. **Clone o Repositório**
     ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/esthertozzo/listaTarefas.git
 2. Abra o arquivo ***index.html*** em seu navegador preferido.
 <hr>
 
