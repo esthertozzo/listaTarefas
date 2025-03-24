@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -73,7 +74,7 @@
 
         button {
             padding: 10px 24px;
-            margin: 4px 0;
+            margin: 4px 20px;
             border-radius: 10px;
             border: none;
             background-color: #656267;
@@ -98,6 +99,7 @@
             list-style: none;
             padding-left: 32px;
         }
+
         input[type="checkbox"] {
             appearance: none;
             width: 24px;
@@ -105,21 +107,36 @@
             border: 1px solid #656267;
             border-radius: 16px;
         }
-        input[type="checkbox"]:checked{
+
+        input[type="checkbox"]:checked {
             background-color: #835398;
             border: none;
         }
-        input[type="checkbox"]:checked::after{
+
+        input[type="checkbox"]:checked::after {
             content: "✔";
             color: #fbfbfb;
             position: relative;
             left: 6px;
-            top: 2.3px;   
+            top: 2.3px;
         }
-        .itemTexto{
-            
-            max-width: 400px; /* Limita a largura máxima */
+
+        .itemTexto {
+            max-width: 400px;
             width: 100%;
+        }
+
+        @media only screen and (max-width: 1500px) {
+            input[type="checkbox"] {
+                width: 40px;
+                height: 24px;
+            }
+            button {
+            margin: 4px 20px;
+            }
+            .novaTarefa {
+            width: 31%;
+        }
         }
     </style>
 </head>
@@ -161,12 +178,13 @@
             });
 
             let btnRemover = document.createElement("button");
-            btnRemover.innerHTML = '<i class="fas fa-trash-alt"></i>';
+            btnRemover.innerHTML = '<span class="material-symbols-outlined">delete</span>';
             btnRemover.addEventListener("click", function () {
                 if (confirm("tem certeza que deseja excluir essa tarefa?")) {
                     lista.removeChild(item);
                 }
             });
+
 
             lista.appendChild(item);
             item.prepend(btnConcluir); //dicionar um elemento filho no início de outro elemento
